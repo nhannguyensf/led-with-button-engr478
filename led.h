@@ -16,5 +16,6 @@
 void configure_LED_pin(void);
 void turn_on_LED(void);
 void turn_off_LED(void);
+void toggle_LED(void);
 
 #endif // LED_H

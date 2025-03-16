@@ -1,36 +1,20 @@
 /**
  * @file    main.c
  * @author  The Nucleo Team - ENGR 478 - Spring 2025
- * @brief   Main program for controlling LED and Push Button
+ * @brief   Main program to blink LED using TIM2 interrupt
  *
- * This file contains the main function that initializes the LED 
- * and Push Button, and continuously monitors the button state 
- * to control the LED accordingly.
+ * This file configures the LED and TIM2 to generate periodic
+ * interrupts, toggling the LED every 1 second.
  */
 
 #include "led.h"
-#include "button.h"
+#include "timer.h"
 
-int main(void)
-{
-	int i;
-	// 1. Configure PA5 as Output (LED) and PC13 as Input (Button)
-	configure_LED_pin();
-	configure_Button_pin();
+int main(void) {
+    configure_LED_pin();  // Initialize LED on PA5
+    configure_TIM2();     // Configure TIM2 to trigger every 1 second
 
-	// 2. Ensure LED starts OFF
-	turn_off_LED(); // If button is pressed, turn on LED
-
-	while (1)
-	{
-		if (is_Button_Pressed())
-		{
-			turn_on_LED(); // If button is pressed, turn on LED
-		}
-		else
-		{
-			turn_off_LED();
-		}
-		// for (i = 0; i < 125; i++); // Simple delay to control the bounce
-	}
+    while (1) {
+        // Main loop does nothing - LED blinks via interrupt
+    }
 }
