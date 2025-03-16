@@ -1,39 +1,26 @@
 /**
  * @file    main.c
  * @author  The Nucleo Team - ENGR 478 - Spring 2025
- * @brief   Main program for controlling LED and Push Button
+ * @brief   Main program for LED blinking using SysTick
  *
- * This file contains the main function that initializes the LED 
- * and Push Button, and continuously monitors the button state 
- * to control the LED accordingly.
+ * This program configures SysTick to generate periodic
+ * interrupts every 1 second, toggling an LED automatically.
  */
 
 #include "led.h"
-#include "button.h"
+#include "systick_timer.h"
 
-// Define LEDs
-LED_t led1 = {GPIOA, 5};  // Green LED (LD2) on PA5
+// Define LED
+LED_t led1 = {GPIOA, 5};  // Onboard Green LED (PA5)
 
-int main(void)
-{
-	int i;
-	// 1. Configure PA5 as Output (LED) and PC13 as Input (Button)
-    configure_LED(led1);
-	configure_Button_pin();
+int main(void) {
+    configure_LED(led1);  // Initialize the LED
 
-	// 2. Ensure LED starts OFF
-	turn_off_LED(led1); // If button is pressed, turn on LED
+    // SysTick Reload Value Calculation:
+    // SYSCLK = 4 MHz, Time = 1s → RELOAD = (4,000,000 - 1)
+    SysTick_Init(4000000);
 
-	while (1)
-	{
-		if (is_Button_Pressed())
-		{
-			turn_on_LED(led1); // If button is pressed, turn on LED
-		}
-		else
-		{
-			turn_off_LED(led1);
-		}
-		// for (i = 0; i < 125; i++); // Simple delay to control the bounce
-	}
+    while (1) {
+        // Main loop does nothing, LED toggles via SysTick exceptions
+    }
 }
