@@ -13,9 +13,10 @@
 #include "stm32l476xx.h"
 
 // Define structure for LED pin configuration
-typedef struct {
-    GPIO_TypeDef *port;   // GPIO port (e.g., GPIOA, GPIOB, GPIOC)
-    uint32_t pin;         // GPIO pin (e.g., GPIO_PIN_5)
+typedef struct
+{
+    GPIO_TypeDef *port; // GPIO port (e.g., GPIOA, GPIOB, GPIOC)
+    uint32_t pin;       // GPIO pin (e.g., GPIO_PIN_5)
 } LED_t;
 
 // Function prototypes
