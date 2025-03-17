@@ -12,6 +12,7 @@
 
 // Define external LED variable (initialized in main)
 extern LED_t led1;
+extern volatile uint8_t button_override;  // Defined in button.c
 
 // Function to configure SysTick for 1s interval
 void SysTick_Init(uint32_t Reload) {
@@ -36,5 +37,7 @@ void SysTick_Init(uint32_t Reload) {
 
 // SysTick Interrupt Handler (Automatically called every 1s)
 void SysTick_Handler(void) {
-    toggle_LED(led1);  // Toggle the LED every interrupt
+if (button_override == 0) {  // Only toggle LED if button is NOT pressed
+        toggle_LED(led1);
+    }
 }
