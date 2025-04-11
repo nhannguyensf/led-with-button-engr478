@@ -25,7 +25,7 @@ int main(void)
     // Enable SysTick interrupt
     // SysTick Reload Value Calculation:
     // SYSCLK = 4 MHz, Time = 1s → RELOAD = (4,000,000 - 1)
-    // SysTick_Init(4000000);
+    SysTick_Init(4000000);
 
     while (1)
     {
